@@ -122,7 +122,7 @@ class Model(torch.nn.Module):
         elif backbone == "18":
             self.backbone = models.resnet18(pretrained=True)
         else:
-            self.backbone = RobustModel(path=path, arch=backbone)
+            self.backbone = RobustModel(path=path, arch=backbone).model
 
         self.backbone.fc = torch.nn.Identity()
         freeze_parameters(self.backbone, backbone, train_fc=False)
